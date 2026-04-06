@@ -1,12 +1,15 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var app = express();
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const app = express();
 
-var indexRouter = require('./routes/index');
-var mealsRouter = require('./routes/meals');
+const indexRouter = require('./routes/index');
+const mealsRouter = require('./routes/meals');
+
+// require new api router for meals
+const apimeals = require('./routes/api/api-meals');
 
 // Connnect to MongoDB and Mongoose
 const mongoose = require('mongoose');      
@@ -30,6 +33,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/meals', mealsRouter);
+
+// add api middleware
+app.use('/api/meals', apimeals);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
