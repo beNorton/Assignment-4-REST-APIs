@@ -1,0 +1,33 @@
+<div>
+    <h1>Add New Food</h1>
+    
+    <form action="/meals" method="POST">
+      <div class="form-group">
+        <label for="mealType">Choose a meal type<abbr title="required">*</abbr>:</label>
+        <select id="mealType" name="mealType" required>
+            <option value="" selected disabled>-- Please choose an option --</option>
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+            <option value="snack">Snack</option>
+            <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label><br>
+        <textarea id="description"
+            name="description"
+            rows="5"
+            cols="40"
+            placeholder="List each food item on a new line. For example:&#10;2 eggs&#10;1 slice of toast with butter"
+            required></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label for="plateImageURL">Plate Pic Url:</label>
+        <input type="text" id="plateImageURL" name="plateImageURL" >
+      </div>
+      
+      <button type="submit">Add Food</button>
+    </form>
+</div>

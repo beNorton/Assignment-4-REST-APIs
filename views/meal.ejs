@@ -1,0 +1,65 @@
+<%- include('header', { title: title }) %>
+    <div class="page-content">  
+        <h1>Meal Details</h1>
+        <% if (meal) { %>
+        <div class="meal-item">
+            <h1><%= meal.mealname %></h1>
+            <!-- <p><%= meal.description %></p> -->
+             <!-- replease with list of food items -->
+            <ul>
+            <% meal.description.forEach(function(item) { %>
+            <li><%= item %></li>
+            <% }) %>
+            </ul>
+            <div class="meal-image">
+                <img src="<%= meal.plateImageURL %>" alt="<%= title %>">
+            </div>
+            <p>
+                <a href="#" id="toggle-meal-edit">Edit</a>
+            </p>
+        </div>
+        <div class="meal-edit" id="meal-edit-panel" style="display: none;">
+            <h2>Edit Meal</h2>
+            <form action="/meals/<%= meal._id %>/edit" method="POST">
+                <div class="form-group">
+                    <label for="mealname">Meal Name:</label>
+                    <input type="text" id="mealname" name="mealname" value="<%= meal.mealname %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label><br>
+                    <!-- <textarea id="description" name="description" rows="5" cols="40" required><%= meal.description %></textarea> -->
+                    <!-- replace with textarea for list of food items -->
+                    <textarea id="description" name="description" rows="5" cols="40" required><%= meal.description.join('\n') %></textarea>
+
+                </div>
+                <div class="form-group">
+                    <label for="plateImageURL">Plate Pic Url:</label>
+                    <input type="text" id="plateImageURL" name="plateImageURL" value="<%= meal.plateImageURL %>">
+                </div>
+                <button type="submit">Save Changes</button>
+            </form>
+            <form action="/meals/<%= meal._id %>/delete" method="POST">
+                <button type="submit">Delete Meal</button>
+            </form>
+        </div>
+        <!-- Script to toggle the edit form visibility -->
+        <script>
+            const toggleMealEditLink = document.getElementById('toggle-meal-edit');
+            const mealEditPanel = document.getElementById('meal-edit-panel');
+
+            toggleMealEditLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                const isHidden = mealEditPanel.style.display === 'none';
+                mealEditPanel.style.display = isHidden ? 'block' : 'none';
+                toggleMealEditLink.textContent = isHidden ? 'Hide Edit' : 'Edit';
+            });
+        </script>
+        <% } else { %>
+        <p>Meal not found.</p>
+        <% } %>
+        <p>
+        <a href="/">Back to home</a>
+        </p>
+    </div>
+</body>
+</html>

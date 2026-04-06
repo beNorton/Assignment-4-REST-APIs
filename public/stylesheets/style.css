@@ -1,0 +1,23 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.header {
+   background: linear-gradient(135deg, #ffc400 0%, #e6cf84 100%);
+  color: white;
+  padding: 20px 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  color: white;
+}
+
+
+.meal-image img {
+  max-width: 300px;
+  height: auto;
+}
