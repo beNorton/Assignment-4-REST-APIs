@@ -4,6 +4,22 @@ const router = express.Router();
 const mealService = require('../../services/mealService');
 const { parseDescription, findMealById } = require('../../services/mealHelpers');
 
+// CORS headers for browser-based clients.
+ router.use((req, res, next) => {
+  res.set({
+    'Access-Control-Allow-Origin': '*', // Anyone can access
+    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS', // These are the allowed methods
+    'Access-Control-Allow-Headers': 'Content-Type' // Allowed headers
+  });
+
+  // for preflight requests
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
+  next();
+});
+
 // routing code 
 
 // list
