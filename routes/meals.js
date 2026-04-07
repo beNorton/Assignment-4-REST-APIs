@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
 
 const mealService = require('../services/mealService');
+const { parseDescription, findMealById } = require('../services/mealHelpers');
 
 // render this when no meal found
 function renderMealNotFound(res) {
@@ -10,15 +10,6 @@ function renderMealNotFound(res) {
     title: 'No meal found',
     meal: null
   });
-}
-
-// Check if mealId is a proper object
-// if so then get the meal by mealId
-async function findMealById(mealId) {
-  if (!mongoose.isValidObjectId(mealId)) {
-    return null;
-  }
-  return mealService.find(mealId);
 }
 
 /* GET single meal by id. with Mongoose */
@@ -96,14 +87,6 @@ router.post('/:mealid/delete', async function(req, res, next) {
 
   res.redirect('/');
 });
-
-//Helper function to split the meal description into an array.
-function parseDescription(descriptionText) {
-  return descriptionText
-    .split(/\r?\n/)
-    .map(line => line.trim())
-    .filter(line => line.length > 0);
-}
 
 /* POST new meal using Mongo. */
 router.post('/', async function(req, res, next) { 
