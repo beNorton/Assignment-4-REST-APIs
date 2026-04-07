@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const Meal = require('../models/mealModel');
+
+const mealService = require('../services/mealService');
 
 // render this when no meal found
 function renderMealNotFound(res) {
@@ -17,7 +18,7 @@ async function findMealById(mealId) {
   if (!mongoose.isValidObjectId(mealId)) {
     return null;
   }
-  return Meal.findById(mealId);
+  return mealService.find(mealId);
 }
 
 /* GET single meal by id. with Mongoose */
@@ -54,13 +55,16 @@ router.post('/:mealid/edit', async function(req, res, next) {
     return renderMealNotFound(res);
   }
 
-  meal.mealname = req.body.mealname;
-  // call helper function to split description.
-  meal.description = parseDescription(req.body.description);
-  meal.plateImageURL = req.body.plateImageURL;
+  const updates = {
+    mealname: req.body.mealname,
+    description: parseDescription(req.body.description),
+    plateImageURL: req.body.plateImageURL,
+  };
 
   try {
-    await meal.save();
+    await mealService.update(req.params.mealid, updates, {
+      runValidators: true,
+    });
   } catch (err) {
     console.error("Error updating meal in database:", err);
     return next(err);
@@ -84,7 +88,7 @@ router.post('/:mealid/delete', async function(req, res, next) {
   }
 
   try {
-    await Meal.findByIdAndDelete(req.params.mealid);
+    await mealService.remove(req.params.mealid);
   } catch (err) {
     console.error("Error deleting meal from database:", err);
     return next(err);
@@ -110,11 +114,9 @@ router.post('/', async function(req, res, next) {
     description: parseDescription(req.body.description),
   }  
   console.log(req.file);
-  
-  let newMeal = new Meal(mealData);
 
   try{
-    await newMeal.save()
+    await mealService.create(mealData);
   }catch(err){
     console.error("Error saving meal to database:", err);
     return next(err);
