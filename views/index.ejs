@@ -1,5 +1,4 @@
 <%- include('header') %>
-
     <h1><%= title %></h1>
     <p>Welcome to "<strong><%= title %></strong>", an application to track what you eat each day.</p>
     <% if (meals.length === 0) { %>
@@ -13,5 +12,8 @@
       </ul>
     <% } %>
     <%- include('addFood') %>
+    <p>Click "Test API" to run the meals API list, find, create, update, and delete requests. Open your browser developer console to see the results.</p>
+    <button id="test-api-button" type="button">Test API</button>
+    <script src="/javascripts/api-calls.js"></script>
   </body>
 </html>
