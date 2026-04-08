@@ -3,15 +3,19 @@
 While working through this assignment I started making all the updates by hand following along
 with the lecture and the materials in the Modules. After creating a new service and updating
 my routes to use that instead, somewhere in refactoring the meals route I lost my place and was
-spending a lot of time making sure I was updating each method. 
+spending a lot of time making sure I was updating each method.
 
 So I ask the following.
 
-`In assighnment-4 I've started to replace the mealModel with the mealService can you finish refactoring meal.js for me and let me know what you did?`
+`In assighnment-4 I've started to replace the mealModel with the mealService can you finish
+refactoring meal.js for me and let me know what you did?`
 
-It made all the changes and showed me a diff file that I could review to make sure I understood what was happening. That was very helpful. I ran some test and it worked great!
+It made all the changes and showed me a diff file that I could review to make sure
+I understood what was happening. That was very helpful. I ran some test and it worked great!
 
-At the start of this assignment I realized something that I didn't catch in the previous assignment. I noticed that my code was using 'var' instead of 'const' in a lot of places. I don't remember that, I wonder if the AI changed them to 'var' and I just didn't notice. A good reminder to check more throughly.
+At the start of this assignment I realized something that I didn't catch in the previous assignment.
+I noticed that my code was using 'var' instead of 'const' in a lot of places. I don't remember that,
+I wonder if the AI changed them to 'var' and I just didn't notice. A good reminder to check more throughly.
 
 I also asked for some help with the api routes with the following prompt.
 
@@ -20,3 +24,9 @@ I also asked for some help with the api routes with the following prompt.
 This worked great as well it even used the same helper functions that I wrote to confirm the id is valid and parse the description text. It also provided some tests I could run in curl which was helpful and I used them in postman.
 
 I didn't like that my helper functions were in both api-meals.js and meals.js I asked the AI to refactor this code to add these functions into services/mealHelpers.js. It pulled out the duplicated code and update the two files to use these functions.
+
+I rewatched the lecture and realized that I forgot to add the javascript tests for the apis. I couldn't find the code at first so I asked the AI.
+
+`I need a way to test my api from the home page. Can you add a button called "test api" to the index.ejs that calls a script in javascripts/api-calls.js. The javascript should test each method of my apis and print the results to the console`
+
+I then asked it to add a little text to explain what the button did. The tests when gets. I did eventually find the code but kept what the AI wrote for me.

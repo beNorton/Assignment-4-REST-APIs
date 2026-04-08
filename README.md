@@ -21,12 +21,12 @@ home page by clicking the "Test API" (open your console to see the results)
 2. Start the server:
 
    ```bash
-   npm start
+   npm run start
    ```
 
 ## Deplpyment Link
 
-[assignment-3-crud-in-express-with-mongodb.onrender.com/](https://assignment-3-crud-in-express-with-mongodb.onrender.com)
+[https://assignment-4-rest-apis.onrender.com/](https://assignment-4-rest-apis.onrender.com/)
 
 ## CHAT PROMPT Reflections
 
