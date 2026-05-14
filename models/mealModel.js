@@ -9,6 +9,7 @@ const schema = new Schema({
   plateImageURL: {type: String, required:false},
   // description is an array of food item. 
   description: {type: [String], required:true},
+  healthRank: {type: Number, required:false, min: 1, max: 5},
   createdAt: {type: Date},
   updatedAt: {type: Date}
 }, {timestamps: true});

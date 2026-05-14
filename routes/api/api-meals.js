@@ -54,6 +54,7 @@ router.post('/', async (req, res, next) => {
     mealname: req.body.mealname || `${new Date().toDateString()}: ${req.body.mealType}`,
     plateImageURL: req.body.plateImageURL,
     description: parseDescription(req.body.description),
+    healthRank: req.body.healthRank,
   };
 
   try {
@@ -81,6 +82,7 @@ router.put('/:mealid', async (req, res, next) => {
       mealname: req.body.mealname,
       plateImageURL: req.body.plateImageURL,
       description: parseDescription(req.body.description),
+      healthRank: req.body.healthRank,
     };
 
     const updatedMeal = await mealService.update(req.params.mealid, updates, {
